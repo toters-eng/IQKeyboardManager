@@ -9,14 +9,13 @@ let package = Package(
         .iOS(.v13)
     ],
     products: [
-        .library(name: "IQKeyboardManagerSwift",
-                 targets: ["IQKeyboardManagerSwift"])
-    ],
-    targets: [
-        .target(
-            name: "IQKeyboardManagerSwift",
-            path: "IQKeyboardManagerSwift",
-            resources: [.copy("PrivacyInfo.xcprivacy")]
-        )
-    ]
+       .library(name: "IQKeyboardManagerSwift", targets: ["IQKeyboardManagerSwift"])
+   ],
+   targets: [
+       .target(
+           name: "IQKeyboardManagerSwift",
+           path: "IQKeyboardManagerSwift",
+           resources: [.copy("PrivacyInfo.xcprivacy")]
+       )
+   ]
 )
