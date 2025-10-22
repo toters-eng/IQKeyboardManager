@@ -40,7 +40,7 @@ Code-less drop-in universal library allows to prevent issues of keyboard sliding
 @available(iOSApplicationExtension, unavailable)
 @MainActor
 @objc public final class IQKeyboardManager: NSObject {
-
+    
     /**
     Returns the default singleton instance.
     */
@@ -286,6 +286,10 @@ Code-less drop-in universal library allows to prevent issues of keyboard sliding
                 return
         }
         adjustPosition()
+    }
+    
+    @objc public func releaseActiveConfigurationRootController() {
+        self.activeConfiguration.rootControllerConfiguration = nil
     }
 }
 
