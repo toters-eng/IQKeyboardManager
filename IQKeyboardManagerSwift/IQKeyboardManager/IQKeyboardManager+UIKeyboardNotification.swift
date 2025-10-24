@@ -70,7 +70,7 @@ internal extension IQKeyboardManager {
         self.banishTextFieldViewSetup()
 
         if let configuration = self.activeConfiguration.rootControllerConfiguration,
-           configuration.rootController.navigationController?.interactivePopGestureRecognizer?.state == .began {
+           configuration.rootController?.navigationController?.interactivePopGestureRecognizer?.state == .began {
             self.rootConfigurationWhilePopGestureActive = configuration
         }
 

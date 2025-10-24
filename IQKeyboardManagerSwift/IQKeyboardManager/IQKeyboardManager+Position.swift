@@ -121,14 +121,15 @@ public extension IQKeyboardManager {
               let textFieldView: UIView = activeConfiguration.textFieldViewInfo?.textFieldView,
               let superview: UIView = textFieldView.superview,
               let rootConfiguration = activeConfiguration.rootControllerConfiguration,
-              let window: UIWindow = rootConfiguration.rootController.view.window else {
+              let window: UIWindow = rootConfiguration.rootController?.view.window else {
             return
         }
 
         showLog(">>>>> \(#function) started >>>>>", indentation: 1)
         let startTime: CFTimeInterval = CACurrentMediaTime()
-
-        let rootController: UIViewController = rootConfiguration.rootController
+        
+        guard let rootController = rootConfiguration.rootController else { return }
+//        let rootController: UIViewController = rootConfiguration.rootController
         let textFieldViewRectInWindow: CGRect = superview.convert(textFieldView.frame, to: window)
         let textFieldViewRectInRootSuperview: CGRect = superview.convert(textFieldView.frame,
                                                                          to: rootController.view.superview)
@@ -645,8 +646,8 @@ public extension IQKeyboardManager {
             // Animating content if needed (Bug ID: #204)
             if self.layoutIfNeededOnUpdate {
                 // Animating content (Bug ID: #160)
-                configuration.rootController.view.setNeedsLayout()
-                configuration.rootController.view.layoutIfNeeded()
+                configuration.rootController?.view.setNeedsLayout()
+                configuration.rootController?.view.layoutIfNeeded()
             }
         })
 

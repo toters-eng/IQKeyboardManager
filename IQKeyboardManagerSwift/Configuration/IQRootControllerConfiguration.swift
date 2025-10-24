@@ -27,7 +27,7 @@ import UIKit
 @MainActor
 internal struct IQRootControllerConfiguration {
 
-    let rootController: UIViewController
+    weak var rootController: UIViewController?
     let beginOrigin: CGPoint
     let beginSafeAreaInsets: UIEdgeInsets
     let beginOrientation: UIInterfaceOrientation
@@ -49,7 +49,7 @@ internal struct IQRootControllerConfiguration {
 
     var currentOrientation: UIInterfaceOrientation {
         let interfaceOrientation: UIInterfaceOrientation
-        if let scene = rootController.view.window?.windowScene {
+        if let scene = rootController?.view.window?.windowScene {
             interfaceOrientation = scene.interfaceOrientation
         } else {
             interfaceOrientation = .unknown
@@ -58,15 +58,17 @@ internal struct IQRootControllerConfiguration {
     }
 
     var isReady: Bool {
-        return rootController.view.window != nil
+        return rootController?.view.window != nil
     }
 
     var hasChanged: Bool {
+        guard let rootController else { return false }
         return !rootController.view.frame.origin.equalTo(beginOrigin)
     }
 
     @discardableResult
     func restore() -> Bool {
+        guard let rootController else { return false }
         if !rootController.view.frame.origin.equalTo(beginOrigin) {
             // Setting it's new frame
             var rect: CGRect = rootController.view.frame

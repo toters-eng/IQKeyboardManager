@@ -106,7 +106,7 @@ internal final class IQActiveConfiguration {
 
         let newConfiguration = IQRootControllerConfiguration(rootController: controller)
 
-        if newConfiguration.rootController.view.window != rootControllerConfiguration?.rootController.view.window ||
+        if newConfiguration.rootController?.view.window != rootControllerConfiguration?.rootController?.view.window ||
             newConfiguration.beginOrientation != rootControllerConfiguration?.beginOrientation {
 
             if rootControllerConfiguration?.rootController != newConfiguration.rootController {
